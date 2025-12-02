@@ -1,0 +1,188 @@
+{
+ "charts": [
+  {
+   "chart_name": "Dashboard Chart One",
+   "label": "Dashboard Chart One"
+  },
+  {
+   "chart_name": "Dashboard Chart Two",
+   "label": "Dashboard Chart Two"
+  }
+ ],
+ "content": "[{\"id\":\"ohbPbpgrHN\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Library</span>\",\"col\":12}},{\"id\":\"PIATKSXmD3\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Library Member\",\"col\":3}},{\"id\":\"DwoWlnYZqc\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Articles\",\"col\":3}},{\"id\":\"m-70nCPAoS\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Library Setting\",\"col\":3}},{\"id\":\"0kMOs19Evv\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"AUUpYyCcBG\",\"type\":\"card\",\"data\":{\"card_name\":\"List\",\"col\":4}},{\"id\":\"sMP1mtp5F3\",\"type\":\"card\",\"data\":{\"card_name\":\"Transactions\",\"col\":4}},{\"id\":\"A6NyxT39mK\",\"type\":\"card\",\"data\":{\"card_name\":\"Doctypes\",\"col\":4}},{\"id\":\"u0a0prGCjq\",\"type\":\"card\",\"data\":{\"card_name\":\"Scripts\",\"col\":4}},{\"id\":\"oPkUH7ilPK\",\"type\":\"card\",\"data\":{\"card_name\":\"Students' Details\",\"col\":4}},{\"id\":\"WCBIfG7vQh\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Dashboard Chart One\",\"col\":12}},{\"id\":\"imjjM8pfsC\",\"type\":\"chart\",\"data\":{\"chart_name\":\"Dashboard Chart Two\",\"col\":12}}]",
+ "creation": "2025-11-17 16:18:18.216479",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "website",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Library",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "List",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Article",
+   "link_count": 0,
+   "link_to": "Article",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Library Member",
+   "link_count": 0,
+   "link_to": "Library Member",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Transactions",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Library Transaction",
+   "link_count": 0,
+   "link_to": "Library Transaction",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Doctypes",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Single Doctype",
+   "link_count": 0,
+   "link_to": "Single Doctype",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Normal Doctype",
+   "link_count": 0,
+   "link_to": "Normal Doctype",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Scripts",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Client Side Scripting",
+   "link_count": 0,
+   "link_to": "Client Side Scripting",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Server Side Scripting",
+   "link_count": 0,
+   "link_to": "Server Side Scripting",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Students' Details",
+   "link_count": 1,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Student Result",
+   "link_count": 0,
+   "link_to": "Student Result",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2025-11-24 11:00:15.718216",
+ "modified_by": "Administrator",
+ "module": "Library Management",
+ "name": "Library",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 28.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Library Member",
+   "link_to": "Library Member",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Articles",
+   "link_to": "Article",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Library Setting",
+   "link_to": "Library Setting",
+   "type": "DocType"
+  }
+ ],
+ "title": "Library"
+}

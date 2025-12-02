@@ -1,0 +1,35 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+
+
+{% if image %}
+    <img src="{{ image }}" alt="{{ title }}" class="img-responsive" style="margin-bottom: 20px;">
+{% endif %}
+
+<h1>{{ title }}</h1>
+
+{% if author %}
+<p><strong>By {{ author }}</strong></p>
+{% endif %}
+
+
+{% if status == "Available" %}
+    <p style="color: rgb(4, 22, 8); font-weight: bold;">Available</p>
+{% elif status == "Issued" %}
+    <p style="color: rgb(11, 207, 93); font-weight: bold;">Issued</p>
+{% endif %}
+
+
+
+<p>
+<strong>Publisher:</strong> {{ publisher }}<br>
+<strong>ISBN:</strong> {{ isbn }}
+</p>
+
+
+<div class="description">
+    {{ description | markdown }}
+</div>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-11-18 10:19:49.770754",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "enter_data",
+  "your_name",
+  "child_doc"
+ ],
+ "fields": [
+  {
+   "fieldname": "enter_data",
+   "fieldtype": "Data",
+   "label": "Enter Data"
+  },
+  {
+   "fieldname": "your_name",
+   "fieldtype": "Data",
+   "label": "Your Name"
+  },
+  {
+   "fieldname": "child_doc",
+   "fieldtype": "Table",
+   "label": "Child Doc",
+   "options": "Child Doc"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-11-18 10:23:05.545071",
+ "modified_by": "Administrator",
+ "module": "Library Management",
+ "name": "Normal Doctype",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

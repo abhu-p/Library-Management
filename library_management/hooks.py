@@ -5,10 +5,46 @@ app_description = "This app is to manage Library."
 app_email = "abhudha1@gmail.com"
 app_license = "mit"
 
+
+
+
+
+
+doc_events = {
+    "Sales Invoice": {
+        "validate": "library_management.library_management.sales_invoice.validate_numbers",
+        "on_submit": "library_management.library_management.sales_invoice.update_numbers_on_submit"
+    }
+}
+
+
+doctype_js = {
+    "Student Result": "public/js/sum_check.js"
+}
+
+
+
+doc_events = {
+    "Student Result": {
+        "before_save": "library_management.library_management.sum_check.calculate_c",
+        "on_update": "library_management.library_management.sum_check.calculate_c"
+    }
+}
+
+doctype_js = {
+    "Sales Invoice": "public/js/sales_invoice.js"
+}
+
+
+
+# Export Custom Fields as fixtures
+#fixtures = ["Custom Field"]
+
 # Apps
 # ------------------
 
 # required_apps = []
+
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [

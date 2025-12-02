@@ -1,0 +1,38 @@
+<div class="row article-row" style="margin-bottom: 20px;">
+
+    <!-- Image -->
+    <div class="col-sm-3">
+        {% if doc.image %}
+            <a href="{{ doc.route }}">
+                <img src="{{ doc.image }}"
+                     alt="{{ doc.name }}"
+                     class="img-responsive"
+                     style="border-radius: 6px; width: 100%; height: auto;">
+            </a>
+        {% endif %}
+    </div>
+
+    <!-- Text Content -->
+    <div class="col-sm-9">
+
+        <h3 style="margin-top: 0;">
+            <a href="{{ doc.route }}">{{ doc.name }}</a>
+        </h3>
+
+        {% if doc.author %}
+        <p>By <strong>{{ doc.author }}</strong></p>
+        {% endif %}
+
+        <!-- SHORT DESCRIPTION with markdown -->
+        {% if doc.description %}
+        <div>
+            {{ doc.description[:180] | markdown }}
+        </div>
+        {% endif %}
+
+        <a href="{{ doc.route }}" class="btn btn-primary btn-sm" style="margin-top: 10px;">
+            Read More
+        </a>
+
+    </div>
+</div>

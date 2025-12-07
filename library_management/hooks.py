@@ -36,6 +36,14 @@ doctype_js = {
 }
 
 
+app_include_css = [
+    "/assets/library_management/css/todo_custom.css"
+]
+
+app_include_js = [
+    "/assets/library_management/js/todo_custom.js"
+]
+
 
 # Export Custom Fields as fixtures
 #fixtures = ["Custom Field"]

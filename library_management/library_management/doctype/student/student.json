@@ -9,7 +9,9 @@
   "student_name",
   "age",
   "email",
-  "grade"
+  "grade",
+  "date",
+  "check_date"
  ],
  "fields": [
   {
@@ -24,20 +26,30 @@
   },
   {
    "fieldname": "email",
-   "fieldtype": "Data",
+   "fieldtype": "Int",
    "label": "Email"
   },
   {
    "fieldname": "grade",
    "fieldtype": "Select",
    "label": "Grade",
-   "options": "A\nB\nC\nD"
+   "options": "A\nB\nC\nD" 
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "check_date",
+   "fieldtype": "Date",
+   "label": "Check Date"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-30 14:03:23.832959",
+ "modified": "2025-12-08 14:03:44.004148",
  "modified_by": "Administrator",
  "module": "Library Management",
  "name": "Student",

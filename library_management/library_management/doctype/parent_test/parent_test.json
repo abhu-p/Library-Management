@@ -1,0 +1,45 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-12-09 14:36:00.191442",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "child_reference"
+ ],
+ "fields": [
+  {
+   "fieldname": "child_reference",
+   "fieldtype": "Link",
+   "label": "Child Reference",
+   "options": "Child Test"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-12-09 14:58:14.074007",
+ "modified_by": "Administrator",
+ "module": "Library Management",
+ "name": "Parent Test",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

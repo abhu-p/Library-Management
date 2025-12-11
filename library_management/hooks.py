@@ -13,8 +13,12 @@ app_license = "mit"
 doc_events = {
     "Sales Invoice": {
         "validate": "library_management.library_management.sales_invoice.validate_numbers",
-        "on_submit": "library_management.library_management.sales_invoice.update_numbers_on_submit"
-    }
+        "on_submit": "library_management.library_management.sales_invoice.update_numbers_on_submit",
+        "validate": "custom_app.custom_api.sales_invoice_events.calculate_custom_total",
+        "before_save": "custom_app.custom_api.sales_invoice_events.calculate_custom_total",
+        "before_submit": "custom_app.custom_api.sales_invoice_events.calculate_custom_total",
+        
+    },
 }
 
 

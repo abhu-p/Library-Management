@@ -1,4 +1,5 @@
-/*frappe.ui.form.on('Parent Test', {
+/*
+frappe.ui.form.on('Check', {
     onload: function(frm) {
         make_company_fields_read_only(frm);
     },
@@ -12,9 +13,9 @@ function make_company_fields_read_only(frm) {
         ['company', 'custom_company'].forEach(function(field) {
             if (frm.fields_dict[field]) {
                 frm.set_df_property(field, 'read_only', 1);
-                frm.refresh_field(field); // ensures proper ERPNext greyed-out effect
+                frm.refresh_field(field); // This ensures the field becomes greyed out
             }
         });
     }
 }
-*/
+    */

@@ -5,49 +5,55 @@ app_description = "This app is to manage Library."
 app_email = "abhudha1@gmail.com"
 app_license = "mit"
 
+# File: apps/library_management/library_management/hooks.py
 
-
+import frappe
+from frappe import _
 
 
 
 doc_events = {
+    # Sales Invoice hooks
     "Sales Invoice": {
         "validate": "library_management.library_management.sales_invoice.validate_numbers",
         "on_submit": "library_management.library_management.sales_invoice.update_numbers_on_submit",
-        "validate": "custom_app.custom_api.sales_invoice_events.calculate_custom_total",
-        "before_save": "custom_app.custom_api.sales_invoice_events.calculate_custom_total",
-        "before_submit": "custom_app.custom_api.sales_invoice_events.calculate_custom_total",
-        
+        "before_save": "library_management.library_management.sales_invoice.calculate_custom_total",
+        "before_submit": "library_management.library_management.sales_invoice.calculate_custom_total",
     },
-}
-
-
-doctype_js = {
-    "Student Result": "public/js/sum_check.js"
-}
-
-
-
-doc_events = {
+    
+    # Student Result hooks
     "Student Result": {
         "before_save": "library_management.library_management.sum_check.calculate_c",
         "on_update": "library_management.library_management.sum_check.calculate_c"
-    }
+    },
+    
+    
 }
 
+app_include_js = [
+    "library_management/library_management/report/test_abc_123/test_abc_123.js"
+]
+
 doctype_js = {
+    "Student Result": "public/js/sum_check.js",
     "Sales Invoice": "public/js/sales_invoice.js"
 }
+
 
 
 app_include_css = [
     "/assets/library_management/css/todo_custom.css"
 ]
 
+app_include_css = [
+    "/assets/library_management/css/test_abc_123.css"
+]
+
+
+
 app_include_js = [
     "/assets/library_management/js/todo_custom.js"
 ]
-
 
 # Export Custom Fields as fixtures
 #fixtures = ["Custom Field"]

@@ -1,0 +1,246 @@
+{% extends "templates/web.html" %}
+{% block title %}Partner Entry{% endblock %}
+
+{% block page_content %}
+<div style="max-width: 700px; margin: 30px auto;">
+    <h2>Partner Management</h2>
+    
+    <!-- Step 1: Add new partners -->
+    <div id="step1">
+        <p>How many partners to add?</p>
+        <input type="number" id="count" min="1" style="padding: 8px; width: 150px;" value="">
+        <button id="createBtn" style="padding: 8px 20px;">Create</button>
+    </div>
+    
+    <!-- Step 2: Enter names -->
+    <div id="step2" style="display:none; margin-top: 20px;">
+        <div id="nameFields"></div>
+        <button id="saveBtn" style="padding: 8px 25px; background:#4CAF50; color:white; border:none;">Save Partners</button>
+    </div>
+    
+    <!-- Step 3: Existing partners -->
+    <h3 style="margin-top: 40px;">Existing Partners</h3>
+    <table border="1" width="100%" style="border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="partnerList">
+            <!-- Filled dynamically by JS -->
+        </tbody>
+    </table>
+    
+    <div id="message" style="margin-top: 20px; color: green; font-weight: bold;"></div>
+</div>
+
+<script>
+// Store partner data globally to avoid ID issues
+let partnersData = [];
+
+// Load all partners
+function loadPartners() {
+    frappe.call({
+        method: 'library_management.library_management.api.get_partners',
+        callback: function(response) {
+            const tbody = document.getElementById('partnerList');
+            
+            if (!tbody) {
+                console.error("Element 'partnerList' not found!");
+                return;
+            }
+            
+            tbody.innerHTML = '';
+            
+            if (!response.message || response.message.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="3">No partners found</td></tr>';
+                partnersData = [];
+                return;
+            }
+            
+            // Store partner data
+            partnersData = response.message;
+            
+            // Create table rows
+            response.message.forEach((p, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${p.name}</td>
+                    <td><input type="text" value="${p.name1 || ''}" data-index="${index}" class="partner-name-input" style="width:90%; padding:5px;"></td>
+                    <td>
+                        <button onclick="updatePartner(${index})" style="padding:5px 15px; margin-right:5px;">Update</button>
+                        <button onclick="deletePartner(${index})" style="padding:5px 15px; background:#f44336; color:white; border:none;">Delete</button>
+                    </td>`;
+                tbody.appendChild(tr);
+            });
+        },
+        error: function(err) {
+            console.error("Error loading partners:", err);
+            alert("Error loading partners. Check console for details.");
+        }
+    });
+}
+
+// Create input fields to add new partners
+function createTable() {
+    const num = parseInt(document.getElementById('count').value);
+    if (!num || num <= 0) {
+        alert('Please enter a valid number');
+        return;
+    }
+
+    let html = '';
+    for (let i = 1; i <= num; i++) {
+        html += `<input type="text" id="name${i}" style="display:block; width:100%; padding:10px; margin-bottom:10px;" placeholder="Partner ${i}">`;
+    }
+
+    document.getElementById('nameFields').innerHTML = html;
+    document.getElementById('step1').style.display = 'none';
+    document.getElementById('step2').style.display = 'block';
+    document.getElementById('message').innerText = '';
+}
+
+// Save newly added partners
+function saveData() {
+    const num = parseInt(document.getElementById('count').value);
+    const partners = [];
+
+    for (let i = 1; i <= num; i++) {
+        const name = document.getElementById(`name${i}`).value.trim();
+        if (!name) {
+            alert(`Partner ${i} name is empty`);
+            return;
+        }
+        partners.push({ name1: name });
+    }
+
+    frappe.call({
+        method: 'library_management.library_management.api.save_partners',
+        args: { partners: JSON.stringify(partners) },
+        callback: function(response) {
+            if (response.message && response.message.success) {
+                document.getElementById('message').innerText = `✓ Success! Saved ${response.message.count} partner(s).`;
+                document.getElementById('step2').style.display = 'none';
+                document.getElementById('step1').style.display = 'block';
+                document.getElementById('count').value = '';
+                
+                // Reload partners after 1 second
+                setTimeout(function() {
+                    loadPartners();
+                    document.getElementById('message').innerText = '';
+                }, 1500);
+            } else {
+                alert(response.message?.error || "Error saving partners");
+            }
+        },
+        error: function(err) {
+            console.error("Error saving partners:", err);
+            alert("Error saving partners. Check console for details.");
+        }
+    });
+}
+
+// Update an existing partner
+function updatePartner(index) {
+    if (index < 0 || index >= partnersData.length) {
+        alert("Invalid partner index!");
+        return;
+    }
+    
+    const partner = partnersData[index];
+    const inputElement = document.querySelector(`input[data-index="${index}"]`);
+    
+    if (!inputElement) {
+        alert("Could not find input field!");
+        return;
+    }
+    
+    const newName = inputElement.value.trim();
+
+    if (!newName) {
+        alert("Name cannot be empty!");
+        return;
+    }
+
+    // Show loading state
+    const originalValue = inputElement.value;
+    inputElement.disabled = true;
+
+    frappe.call({
+        method: 'library_management.library_management.api.update_partner',
+        args: { 
+            partner_id: partner.name, 
+            new_name: newName 
+        },
+        callback: function(response) {
+            inputElement.disabled = false;
+            
+            if (response.message && response.message.success) {
+                document.getElementById('message').innerText = `✓ Partner "${partner.name}" updated successfully!`;
+                
+                // Reload to show updated data
+                setTimeout(function() {
+                    loadPartners();
+                    document.getElementById('message').innerText = '';
+                }, 1500);
+            } else {
+                alert(response.message?.error || "Error updating partner");
+                inputElement.value = originalValue;
+            }
+        },
+        error: function(err) {
+            inputElement.disabled = false;
+            inputElement.value = originalValue;
+            console.error("Error updating partner:", err);
+            alert("Error updating partner. Check console for details.");
+        }
+    });
+}
+
+// Delete an existing partner
+function deletePartner(index) {
+    if (index < 0 || index >= partnersData.length) {
+        alert("Invalid partner index!");
+        return;
+    }
+    
+    const partner = partnersData[index];
+    
+    if (!confirm(`Are you sure you want to delete "${partner.name1}"?`)) {
+        return;
+    }
+
+    frappe.call({
+        method: 'library_management.library_management.api.delete_partner',
+        args: { partner_id: partner.name },
+        callback: function(response) {
+            if (response.message && response.message.success) {
+                document.getElementById('message').innerText = `✓ Partner "${partner.name1}" deleted successfully!`;
+                
+                // Reload to show updated list
+                setTimeout(function() {
+                    loadPartners();
+                    document.getElementById('message').innerText = '';
+                }, 1500);
+            } else {
+                alert(response.message?.error || "Error deleting partner");
+            }
+        },
+        error: function(err) {
+            console.error("Error deleting partner:", err);
+            alert("Error deleting partner. Check console for details.");
+        }
+    });
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('count').value = '';
+    document.getElementById('createBtn').addEventListener('click', createTable);
+    document.getElementById('saveBtn').addEventListener('click', saveData);
+    loadPartners();
+});
+</script>
+{% endblock %}
